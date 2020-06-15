@@ -18,14 +18,14 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <style>
     </style>
-    <title>#网站title#</title>
+    <title>#网站Title#</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <div>
-                <a class="navbar-brand" href="index.html" style="font-size: 32px;">#网站简介#</a>
+                <a class="navbar-brand" href="index.html" style="font-size: 32px;">#网站名#-#网站简介#</a>
             </div>
         </div>
     </div>
@@ -37,13 +37,14 @@
         <h2 class="form-signin-heading">
             <i class="glyphicon glyphicon-log-in"></i> 管理员登录
         </h2>
+        <p>${requestScope.exception.message }</p>
         <div class="form-group has-success has-feedback">
-            <input type="text" name="username" class="form-control" id="username"
+            <input type="text" name="loginAcct" value="tom" class="form-control" id="loginAcct"
                    placeholder="请输入登录账号" autofocus> <span
                 class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-success has-feedback">
-            <input type="password" name="password" class="form-control" id="password"
+            <input type="password" name="userPswd" value="123123" class="form-control" id="userPswd"
                    placeholder="请输入登录密码" style="margin-top: 10px;"> <span
                 class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>

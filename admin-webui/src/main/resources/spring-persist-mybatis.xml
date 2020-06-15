@@ -30,6 +30,24 @@
 
         <!--装配数据源-->
         <property name="dataSource" ref="dataSource"/>
+
+        <!-- 配置插件 -->
+        <property name="plugins">
+            <array>
+                <!-- 配置PageHelper插件 -->
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <props>
+                            <!-- 配置数据库方言，告诉PageHelper当前使用的数据库 -->
+                            <prop key="dialect">mysql</prop>
+
+                            <!-- 配置页码的合理化修正，在1~总页数之间修正页码 -->
+                            <prop key="reasonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!--配置MapperScannerConfigurer来扫描Mapper接口所在的包-->

@@ -53,4 +53,13 @@ public class CrowdTest {
         List<Admin> admins = adminService.getAll();
         System.out.println(admins);
     }
+
+    @Test
+    public void addTestUserData() {
+        for(int i = 0; i < 238; i++) {
+            String password = "userPswd" + i;
+            password = CrowdUtil.md5(password);
+            adminMapper.insert(new Admin(null, "loginAcct"+i, password, "userName"+i, "email"+i, null));
+        }
+    }
 }
