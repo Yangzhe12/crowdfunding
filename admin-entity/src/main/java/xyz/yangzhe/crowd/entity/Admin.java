@@ -3,11 +3,11 @@ package xyz.yangzhe.crowd.entity;
 public class Admin {
     private Integer id;
 
-    private String loginAcct;
+    private String username;
 
-    private String userPswd;
+    private String password;
 
-    private String userName;
+    private String nickname;
 
     private String email;
 
@@ -16,25 +16,13 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(Integer id, String loginAcct, String userPswd, String userName, String email, String createTime) {
+    public Admin(Integer id, String username, String password, String nickname, String email, String createTime) {
         this.id = id;
-        this.loginAcct = loginAcct;
-        this.userPswd = userPswd;
-        this.userName = userName;
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
         this.email = email;
         this.createTime = createTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Admin{" +
-                "id=" + id +
-                ", loginAcct='" + loginAcct + '\'' +
-                ", userPswd='" + userPswd + '\'' +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", createTime='" + createTime + '\'' +
-                '}';
     }
 
     public Integer getId() {
@@ -45,28 +33,28 @@ public class Admin {
         this.id = id;
     }
 
-    public String getLoginAcct() {
-        return loginAcct;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLoginAcct(String loginAcct) {
-        this.loginAcct = loginAcct == null ? null : loginAcct.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
-    public String getUserPswd() {
-        return userPswd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPswd(String userPswd) {
-        this.userPswd = userPswd == null ? null : userPswd.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 
     public String getEmail() {

@@ -3,11 +3,11 @@
 <mapper namespace="xyz.yangzhe.crowd.mapper.AdminMapper">
     <resultMap id="BaseResultMap" type="xyz.yangzhe.crowd.entity.Admin">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="login_acct" property="loginAcct" jdbcType="VARCHAR"/>
-        <result column="user_pswd" property="userPswd" jdbcType="CHAR"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="CHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -71,10 +71,11 @@
     </sql>
     <sql id="Base_Column_List">
 
-    id, login_acct, user_pswd, user_name, email, create_time
+    id, username, password, nickname, email, create_time
 
     </sql>
-    <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.yangzhe.crowd.entity.AdminExample">
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="xyz.yangzhe.crowd.entity.AdminExample">
 
     select
 
@@ -85,7 +86,7 @@
         </if>
         <include refid="Base_Column_List"/>
 
-    from t_admin
+    from account
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -97,32 +98,34 @@
         </if>
     </select>
     <select id="selectAdminByKeyword" resultMap="BaseResultMap">
-        select id, login_acct, user_pswd, user_name, email, create_time
-        from t_admin
+
+        select id, username, password, nickname, email, create_time
+        from account
         where
-            login_acct like concat("%", #{keyword}, "%") or
-            user_name like concat("%", #{keyword}, "%") or
+            username like concat("%", #{keyword}, "%") or
+            nickname like concat("%", #{keyword}, "%") or
             email like concat("%", #{keyword}, "%")
+
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 
-    select 
+    select
 
         <include refid="Base_Column_List"/>
 
-    from t_admin
+    from account
     where id = #{id,jdbcType=INTEGER}
 
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 
-    delete from t_admin
+    delete from account
     where id = #{id,jdbcType=INTEGER}
 
     </delete>
     <delete id="deleteByExample" parameterType="xyz.yangzhe.crowd.entity.AdminExample">
 
-    delete from t_admin
+    delete from account
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -130,36 +133,36 @@
     </delete>
     <insert id="insert" parameterType="xyz.yangzhe.crowd.entity.Admin">
 
-    insert into t_admin (id, login_acct, user_pswd, 
-      user_name, email, create_time
+    insert into account (id, username, password,
+      nickname, email, create_time
       )
-    values (#{id,jdbcType=INTEGER}, #{loginAcct,jdbcType=VARCHAR}, #{userPswd,jdbcType=CHAR}, 
-      #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTime,jdbcType=CHAR}
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}
       )
 
     </insert>
     <insert id="insertSelective" parameterType="xyz.yangzhe.crowd.entity.Admin">
 
-    insert into t_admin
+    insert into account
 
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
 
             </if>
-            <if test="loginAcct != null">
+            <if test="username != null">
 
-        login_acct,
-
-            </if>
-            <if test="userPswd != null">
-
-        user_pswd,
+        username,
 
             </if>
-            <if test="userName != null">
+            <if test="password != null">
 
-        user_name,
+        password,
+
+            </if>
+            <if test="nickname != null">
+
+        nickname,
 
             </if>
             <if test="email != null">
@@ -177,19 +180,19 @@
                 #{id,jdbcType=INTEGER},
 
             </if>
-            <if test="loginAcct != null">
+            <if test="username != null">
 
-        #{loginAcct,jdbcType=VARCHAR},
-
-            </if>
-            <if test="userPswd != null">
-
-        #{userPswd,jdbcType=CHAR},
+        #{username,jdbcType=VARCHAR},
 
             </if>
-            <if test="userName != null">
+            <if test="password != null">
 
-        #{userName,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+
+            </if>
+            <if test="nickname != null">
+
+        #{nickname,jdbcType=VARCHAR},
 
             </if>
             <if test="email != null">
@@ -199,13 +202,14 @@
             </if>
             <if test="createTime != null">
 
-        #{createTime,jdbcType=CHAR},
+        #{createTime,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="xyz.yangzhe.crowd.entity.AdminExample" resultType="java.lang.Integer">
+    <select id="countByExample" parameterType="xyz.yangzhe.crowd.entity.AdminExample"
+            resultType="java.lang.Integer">
 
-    select count(*) from t_admin
+    select count(*) from account
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -213,26 +217,26 @@
     </select>
     <update id="updateByExampleSelective" parameterType="map">
 
-    update t_admin
+    update account
 
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
 
             </if>
-            <if test="record.loginAcct != null">
+            <if test="record.username != null">
 
-        login_acct = #{record.loginAcct,jdbcType=VARCHAR},
-
-            </if>
-            <if test="record.userPswd != null">
-
-        user_pswd = #{record.userPswd,jdbcType=CHAR},
+        username = #{record.username,jdbcType=VARCHAR},
 
             </if>
-            <if test="record.userName != null">
+            <if test="record.password != null">
 
-        user_name = #{record.userName,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
+
+            </if>
+            <if test="record.nickname != null">
+
+        nickname = #{record.nickname,jdbcType=VARCHAR},
 
             </if>
             <if test="record.email != null">
@@ -242,7 +246,7 @@
             </if>
             <if test="record.createTime != null">
 
-        create_time = #{record.createTime,jdbcType=CHAR},
+        create_time = #{record.createTime,jdbcType=VARCHAR},
             </if>
         </set>
         <if test="_parameter != null">
@@ -251,13 +255,13 @@
     </update>
     <update id="updateByExample" parameterType="map">
 
-    update t_admin
+    update account
     set id = #{record.id,jdbcType=INTEGER},
-      login_acct = #{record.loginAcct,jdbcType=VARCHAR},
-      user_pswd = #{record.userPswd,jdbcType=CHAR},
-      user_name = #{record.userName,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=CHAR}
+      create_time = #{record.createTime,jdbcType=VARCHAR}
 
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -265,21 +269,21 @@
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="xyz.yangzhe.crowd.entity.Admin">
 
-    update t_admin
+    update account
 
         <set>
-            <if test="loginAcct != null">
-                login_acct = #{loginAcct,jdbcType=VARCHAR},
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
 
             </if>
-            <if test="userPswd != null">
+            <if test="password != null">
 
-        user_pswd = #{userPswd,jdbcType=CHAR},
+        password = #{password,jdbcType=VARCHAR},
 
             </if>
-            <if test="userName != null">
+            <if test="nickname != null">
 
-        user_name = #{userName,jdbcType=VARCHAR},
+        nickname = #{nickname,jdbcType=VARCHAR},
 
             </if>
             <if test="email != null">
@@ -289,7 +293,7 @@
             </if>
             <if test="createTime != null">
 
-        create_time = #{createTime,jdbcType=CHAR},
+        create_time = #{createTime,jdbcType=VARCHAR},
             </if>
         </set>
 
@@ -298,12 +302,12 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="xyz.yangzhe.crowd.entity.Admin">
 
-    update t_admin
-    set login_acct = #{loginAcct,jdbcType=VARCHAR},
-      user_pswd = #{userPswd,jdbcType=CHAR},
-      user_name = #{userName,jdbcType=VARCHAR},
+    update account
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=CHAR}
+      create_time = #{createTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
 
     </update>

@@ -26,8 +26,8 @@ public class AdminHandler {
     private AdminService adminService;
 
     @RequestMapping(value = "/admin/do/login.html", method = RequestMethod.POST)
-    public String doLogin(@RequestParam("loginAcct") String username,
-                          @RequestParam("userPswd") String password,
+    public String doLogin(@RequestParam("username") String username,
+                          @RequestParam("password") String password,
                           HttpSession session) {
         // 1. 调用Service方法执行登录检查
         // 这个方法如果能够返回admin对象说明登录成功，如果账号、密码不正确则会抛出异常
@@ -69,6 +69,11 @@ public class AdminHandler {
         return "admin-page";
     }
 
+    /**
+     * @Description: 添加用户handler
+     * @Param:
+     * @Return:
+     */
     @RequestMapping(value = "/admin/save.html", method = RequestMethod.POST)
     public String saveAdmin(Admin admin) {
         // 1. 保存

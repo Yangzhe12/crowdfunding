@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.spi.LoggerFactoryBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -40,11 +39,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void saveAdmin(Admin admin) {
         // 1. 密码加密
-        String password = admin.getUserName();
-        System.out.println("____________________________");
-        System.out.println(admin);
+        String password = admin.getPassword();
         password = CrowdUtil.md5(password);
-        admin.setUserPswd(password);
+        admin.setPassword(password);
 
         // 2. 生成创建时间
         Date date = new Date();
@@ -80,7 +77,7 @@ public class AdminServiceImpl implements AdminService {
         Criteria criteria = adminExample.createCriteria();
 
         // 1.3 在Criteria中封装查询条件
-        criteria.andLoginAcctEqualTo(username);
+        criteria.andUsernameEqualTo(username);
 
         // 1.4 调用AdminMapper的方法进行查询
         List<Admin> list = adminMapper.selectByExample(adminExample);
@@ -103,7 +100,7 @@ public class AdminServiceImpl implements AdminService {
         }
 
         // 4. 如果admin不为null，则对比用户传入密码和数据库密码，首先获取数据库密码
-        String passwordDB = admin.getUserPswd();
+        String passwordDB = admin.getPassword();
 
         // 5. 将表单提交的明文密码加密
         String passwordForm = CrowdUtil.md5(password);

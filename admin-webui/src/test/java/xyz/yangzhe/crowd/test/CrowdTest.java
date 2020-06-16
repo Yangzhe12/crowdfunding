@@ -43,8 +43,7 @@ public class CrowdTest {
 
     @Test
     public void testTx() {
-        String password = CrowdUtil.md5("2012");
-        Admin admin = new Admin(null, "admin", password, "汤姆", "tom@163.com", null);
+        Admin admin = new Admin(null, "admin", "2012", "汤姆", "tom@163.com", null);
         adminService.saveAdmin(admin);
     }
 
@@ -57,9 +56,7 @@ public class CrowdTest {
     @Test
     public void addTestUserData() {
         for(int i = 0; i < 238; i++) {
-            String password = "userPswd" + i;
-            password = CrowdUtil.md5(password);
-            adminMapper.insert(new Admin(null, "loginAcct"+i, password, "userName"+i, "email"+i, null));
+            adminMapper.insert(new Admin(null, "loginAcct"+i, "userPswd" + i, "userName"+i, "email"+i, null));
         }
     }
 }

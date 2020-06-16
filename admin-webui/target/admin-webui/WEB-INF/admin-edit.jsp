@@ -31,18 +31,18 @@
 							<input type="hidden" name="keyword" value="${param.keyword }" />
 							<p>${requestScope.exception.message }</p>
 							<div class="form-group">
-								<label for="nickName">用户昵称</label>
+								<label for="nickname">用户昵称</label>
 								<input
-									name="userName"
-									value="${requestScope.admin.userName }" 
+									name="nickname"
+									value="${requestScope.admin.nickname }"
 									type="text" class="form-control"
-									id="nickName" placeholder="请输入昵称">
+									id="nickname" placeholder="请输入昵称">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">邮箱地址</label>
+								<label for="email">邮箱地址</label>
 								<input type="email"
 									name="email" 
-									value="${requestScope.admin.email }" class="form-control" id="exampleInputEmail1"
+									value="${requestScope.admin.email }" class="form-control" id="email"
 									placeholder="请输入邮箱地址">
 								<p class="help-block label label-warning">请输入合法的邮箱地址, 格式为：
 									xxxx@xxxx.com</p>
