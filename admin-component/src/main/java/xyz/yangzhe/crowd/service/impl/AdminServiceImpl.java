@@ -153,11 +153,36 @@ public class AdminServiceImpl implements AdminService {
 
     /**
      * @Description: 根据id删除单条数据
-     * @Param:
-     * @Return:
      */
     @Override
     public void remove(Integer adminId) {
         adminMapper.deleteByPrimaryKey(adminId);
+    }
+
+    @Override
+    public void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList) {
+        // 旧数据如下：
+        // adminId	roleId
+        // 1		1（要删除）
+        // 1		2（要删除）
+        // 1		3
+        // 1		4
+        // 1		5
+        // 新数据如下：
+        // adminId	roleId
+        // 1		3（本来就有）
+        // 1		4（本来就有）
+        // 1		5（本来就有）
+        // 1		6（新）
+        // 1		7（新）
+        // 为了简化操作：先根据adminId删除旧的数据，再根据roleIdList保存全部新的数据
+
+        // 1.根据adminId删除旧的关联关系数据
+        adminMapper.deleteOLdRelationship(adminId);
+
+        // 2.根据roleIdList和adminId保存新的关联关系
+        if(roleIdList != null && roleIdList.size() > 0) {
+            adminMapper.insertNewRelationship(adminId, roleIdList);
+        }
     }
 }

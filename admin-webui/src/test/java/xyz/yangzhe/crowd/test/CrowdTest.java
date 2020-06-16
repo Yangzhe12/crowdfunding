@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xyz.yangzhe.crowd.entity.Admin;
+import xyz.yangzhe.crowd.entity.Role;
 import xyz.yangzhe.crowd.mapper.AdminMapper;
 import xyz.yangzhe.crowd.service.api.AdminService;
+import xyz.yangzhe.crowd.service.api.RoleService;
 import xyz.yangzhe.crowd.util.CrowdUtil;
 
 import javax.sql.DataSource;
@@ -32,6 +34,9 @@ public class CrowdTest {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private RoleService roleService;
+
     @Test
     public void testDataSources() throws SQLException{
         // 1. 通过数据源对象获取数据源连接
@@ -45,6 +50,19 @@ public class CrowdTest {
     public void testTx() {
         Admin admin = new Admin(null, "admin", "2012", "汤姆", "tom@163.com", null);
         adminService.saveAdmin(admin);
+    }
+
+    @Test
+    public void testAddRole(){
+        Role role = new Role(null, "超级管理员");
+        roleService.saveRole(role);
+    }
+
+    @Test
+    public void addTestRoleData(){
+        for(int i = 0; i < 238; i++) {
+            roleService.saveRole(new Role(null, "role"+i));
+        }
     }
 
     @Test

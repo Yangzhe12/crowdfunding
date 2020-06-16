@@ -19,4 +19,7 @@ public interface AdminService {
     void update(Admin admin);
 
     void remove(Integer adminId);
+
+    void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList);
+
 }

@@ -46,6 +46,8 @@
     <mvc:view-controller path="/admin/to/add/page.html" view-name="admin-add"/>
     <!--角色相关-->
     <mvc:view-controller path="/role/to/page.html" view-name="role-page"/>
+    <!--菜单相关-->
+    <mvc:view-controller path="/menu/to/page.html" view-name="menu-page"/>
 
     <!-- 注册拦截器 -->
     <mvc:interceptors>

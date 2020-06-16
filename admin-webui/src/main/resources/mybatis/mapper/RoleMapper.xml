@@ -70,10 +70,15 @@
     id, name
 
     </sql>
+    <select id="selectAssignedRole" resultMap="BaseResultMap">
+		select id,name from role where id in (select role_id from account_role where admin_id=#{adminId})
+	</select>
+	<select id="selectUnAssignedRole" resultMap="BaseResultMap">
+		select id,name from role where id not in (select role_id from account_role where admin_id=#{adminId})
+	</select>
     <select id="selectRoleByKeyword" resultMap="BaseResultMap">
 
-      select id,name from role
-      where name like concat("%", #{keyword},"%");
+      select id,name from role where name like concat("%", #{keyword},"%")
 
     </select>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.yangzhe.crowd.entity.RoleExample">
