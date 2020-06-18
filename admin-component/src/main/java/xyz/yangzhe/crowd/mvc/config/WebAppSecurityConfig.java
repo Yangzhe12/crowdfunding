@@ -28,6 +28,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
+    // 提供密码验证
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
