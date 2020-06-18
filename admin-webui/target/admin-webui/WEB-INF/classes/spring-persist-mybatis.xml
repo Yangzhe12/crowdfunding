@@ -56,4 +56,7 @@
         <property name="basePackage" value="xyz.yangzhe.crowd.mapper"/>
     </bean>
 
+    <!-- 配置BCryptPasswordEncoder的bean -->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
 </beans>

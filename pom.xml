@@ -161,6 +161,28 @@
                 <artifactId>gson</artifactId>
                 <version>2.8.5</version>
             </dependency>
+
+            <!-- SpringSecurity对Web应用进行权限管理 -->
+            <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${yangzhe.spring.security.version}</version>
+            </dependency>
+
+            <!-- SpringSecurity配置 -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${yangzhe.spring.security.version}</version>
+            </dependency>
+
+            <!-- SpringSecurity标签库 -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-taglibs</artifactId>
+                <version>${yangzhe.spring.security.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

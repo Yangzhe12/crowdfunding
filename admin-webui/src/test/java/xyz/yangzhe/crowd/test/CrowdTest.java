@@ -77,4 +77,6 @@ public class CrowdTest {
             adminMapper.insert(new Admin(null, "loginAcct"+i, "userPswd" + i, "userName"+i, "email"+i, null));
         }
     }
+
+
 }

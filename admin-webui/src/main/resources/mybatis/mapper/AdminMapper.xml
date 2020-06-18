@@ -73,7 +73,12 @@
 
 
 
+
     id, username, password, nickname, email, create_time
+
+
+
+
 
 
 
@@ -83,7 +88,7 @@
 
 
 
-    select
+        select
 
 
 
@@ -91,7 +96,7 @@
 
 
 
-      distinct
+        distinct
 
 
 
@@ -100,7 +105,7 @@
 
 
 
-    from account
+        from account
 
 
 
@@ -111,13 +116,25 @@
 
 
 
+
+
+
+
       order by ${orderByClause}
+
+
+
+
 
 
 
         </if>
     </select>
     <select id="selectAdminByKeyword" resultMap="BaseResultMap">
+
+
+
+
 
 
 
@@ -130,8 +147,16 @@
 
 
 
+
+
+
+
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+
+
+
+
 
 
 
@@ -139,7 +164,15 @@
 
 
 
+
+
+
+
         <include refid="Base_Column_List"/>
+
+
+
+
 
 
 
@@ -148,13 +181,29 @@
 
 
 
+
+
+
+
     </select>
     <delete id="deleteOLdRelationship" parameterType="java.lang.Integer">
 
+
+
+
+
     delete from account_role where admin_id=#{adminId}
+
+
+
+
 
     </delete>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+
+
+
 
 
 
@@ -163,12 +212,24 @@
 
 
 
+
+
+
+
     </delete>
     <delete id="deleteByExample" parameterType="xyz.yangzhe.crowd.entity.AdminExample">
 
 
 
+
+
+
+
     delete from account
+
+
+
+
 
 
 
@@ -177,12 +238,24 @@
         </if>
     </delete>
     <insert id="insertNewRelationship">
+
+
+
+
     insert into account_role(admin_id, role_id) values
-    <foreach collection="roleIdList" item="roleId" separator=",">
-    (#{adminId},#{roleId})
-</foreach>
+
+
+
+
+        <foreach collection="roleIdList" item="roleId" separator=",">
+            (#{adminId},#{roleId})
+        </foreach>
     </insert>
     <insert id="insert" parameterType="xyz.yangzhe.crowd.entity.Admin">
+
+
+
+
 
 
 
@@ -195,12 +268,24 @@
 
 
 
+
+
+
+
     </insert>
     <insert id="insertSelective" parameterType="xyz.yangzhe.crowd.entity.Admin">
 
 
 
+
+
+
+
     insert into account
+
+
+
+
 
 
 
@@ -210,12 +295,24 @@
 
 
 
+
+
+
+
             </if>
             <if test="username != null">
 
 
 
+
+
+
+
         username,
+
+
+
+
 
 
 
@@ -224,7 +321,15 @@
 
 
 
+
+
+
+
         password,
+
+
+
+
 
 
 
@@ -233,7 +338,15 @@
 
 
 
+
+
+
+
         nickname,
+
+
+
+
 
 
 
@@ -242,12 +355,24 @@
 
 
 
+
+
+
+
         email,
+
+
+
+
 
 
 
             </if>
             <if test="createTime != null">
+
+
+
+
 
 
 
@@ -260,12 +385,24 @@
 
 
 
+
+
+
+
             </if>
             <if test="username != null">
 
 
 
+
+
+
+
         #{username,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -274,7 +411,15 @@
 
 
 
+
+
+
+
         #{password,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -283,7 +428,15 @@
 
 
 
+
+
+
+
         #{nickname,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -292,12 +445,24 @@
 
 
 
+
+
+
+
         #{email,jdbcType=VARCHAR},
+
+
+
+
 
 
 
             </if>
             <if test="createTime != null">
+
+
+
+
 
 
 
@@ -310,7 +475,15 @@
 
 
 
+
+
+
+
     select count(*) from account
+
+
+
+
 
 
 
@@ -322,7 +495,15 @@
 
 
 
+
+
+
+
     update account
+
+
+
+
 
 
 
@@ -332,12 +513,24 @@
 
 
 
+
+
+
+
             </if>
             <if test="record.username != null">
 
 
 
+
+
+
+
         username = #{record.username,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -346,7 +539,15 @@
 
 
 
+
+
+
+
         password = #{record.password,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -355,7 +556,15 @@
 
 
 
+
+
+
+
         nickname = #{record.nickname,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -364,12 +573,24 @@
 
 
 
+
+
+
+
         email = #{record.email,jdbcType=VARCHAR},
+
+
+
+
 
 
 
             </if>
             <if test="record.createTime != null">
+
+
+
+
 
 
 
@@ -384,6 +605,10 @@
 
 
 
+
+
+
+
     update account
     set id = #{record.id,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
@@ -391,6 +616,10 @@
       nickname = #{record.nickname,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=VARCHAR}
+
+
+
+
 
 
 
@@ -402,7 +631,15 @@
 
 
 
+
+
+
+
     update account
+
+
+
+
 
 
 
@@ -412,12 +649,24 @@
 
 
 
+
+
+
+
             </if>
             <if test="password != null">
 
 
 
+
+
+
+
         password = #{password,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -426,7 +675,15 @@
 
 
 
+
+
+
+
         nickname = #{nickname,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -435,7 +692,15 @@
 
 
 
+
+
+
+
         email = #{email,jdbcType=VARCHAR},
+
+
+
+
 
 
 
@@ -444,19 +709,20 @@
 
 
 
+
+
+
+
         create_time = #{createTime,jdbcType=VARCHAR},
             </if>
         </set>
 
 
-
     where id = #{id,jdbcType=INTEGER}
-
 
 
     </update>
     <update id="updateByPrimaryKey" parameterType="xyz.yangzhe.crowd.entity.Admin">
-
 
 
     update account
@@ -466,7 +732,6 @@
       email = #{email,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
-
 
 
     </update>

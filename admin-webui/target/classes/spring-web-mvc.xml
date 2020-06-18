@@ -28,6 +28,7 @@
                 <!-- 标签体中写对应的视图（这个值要拼前后缀得到具体路径） -->
                 <prop key="java.lang.Exception">system-error</prop>
                 <prop key="xyz.yangzhe.crowd.exception.AccessForbiddenException">admin-login</prop>
+                <prop key="xyz.yangzhe.crowd.exception.LoginFailedException">admin-login</prop>
             </props>
         </property>
     </bean>
@@ -50,20 +51,20 @@
     <mvc:view-controller path="/menu/to/page.html" view-name="menu-page"/>
 
     <!-- 注册拦截器 -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!-- mvc:mapping配置要拦截的资源 -->
-            <!-- /*对应一层路径，比如：/aaa -->
-            <!-- /**对应多层路径，比如：/aaa/bbb或/aaa/bbb/ccc或/aaa/bbb/ccc/ddd -->
-            <mvc:mapping path="/**"/>
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash; mvc:mapping配置要拦截的资源 &ndash;&gt;-->
+<!--            &lt;!&ndash; /*对应一层路径，比如：/aaa &ndash;&gt;-->
+<!--            &lt;!&ndash; /**对应多层路径，比如：/aaa/bbb或/aaa/bbb/ccc或/aaa/bbb/ccc/ddd &ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
 
-            <!-- mvc:exclude-mapping配置不拦截的资源 -->
-            <mvc:exclude-mapping path="/admin/to/login/page.html"/>
-            <mvc:exclude-mapping path="/admin/do/login.html"/>
-            <mvc:exclude-mapping path="/admin/do/logout.html"/>
+<!--            &lt;!&ndash; mvc:exclude-mapping配置不拦截的资源 &ndash;&gt;-->
+<!--            <mvc:exclude-mapping path="/admin/to/login/page.html"/>-->
+<!--            <mvc:exclude-mapping path="/admin/do/login.html"/>-->
+<!--            <mvc:exclude-mapping path="/admin/do/logout.html"/>-->
 
-            <!-- 配置拦截器类 -->
-            <bean class="xyz.yangzhe.crowd.mvc.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--            &lt;!&ndash; 配置拦截器类 &ndash;&gt;-->
+<!--            <bean class="xyz.yangzhe.crowd.mvc.interceptor.LoginInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
 </beans>

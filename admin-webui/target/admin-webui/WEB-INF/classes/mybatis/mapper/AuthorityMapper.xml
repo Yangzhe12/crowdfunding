@@ -74,6 +74,13 @@
 
 
     </sql>
+    <select id="selectAssignedAuthNameByAdminId" resultType="string">
+		SELECT DISTINCT authority.name
+		FROM authority
+		LEFT JOIN role_auth ON authority.id=role_auth.auth_id
+		LEFT JOIN account_role ON account_role.role_id=role_auth.role_id
+		WHERE account_role.admin_id=#{adminId} and authority.name != "" and authority.name is not null
+	</select>
     <select id="selectAssignedAuthIdByRoleId" resultType="int">
 
 

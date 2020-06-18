@@ -2,6 +2,7 @@ package xyz.yangzhe.crowd.mvc.handler;
 
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +24,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class AdminHandler {
     @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
     private AdminService adminService;
 
+    /**
+     * @Description: 处理登陆请求
+     */
     @RequestMapping(value = "/admin/do/login.html", method = RequestMethod.POST)
     public String doLogin(@RequestParam("username") String username,
                           @RequestParam("password") String password,
@@ -39,6 +46,9 @@ public class AdminHandler {
         return "redirect:/admin/to/main/page.html";
     }
 
+    /**
+     * @Description: 处理退出登陆请求
+     */
     @RequestMapping("/admin/do/logout.html")
     public String doLogout(HttpSession session) {
         // 强制Session失效
@@ -71,8 +81,6 @@ public class AdminHandler {
 
     /**
      * @Description: 添加用户handler
-     * @Param:
-     * @Return:
      */
     @RequestMapping(value = "/admin/save.html", method = RequestMethod.POST)
     public String saveAdmin(Admin admin) {
@@ -111,8 +119,6 @@ public class AdminHandler {
 
     /**
      * @Description: 删除单条用户信息
-     * @Param:
-     * @Return:
      */
     @RequestMapping("/admin/remove/{adminId}/{pageNum}/{keyword}.html")
     public String remove(

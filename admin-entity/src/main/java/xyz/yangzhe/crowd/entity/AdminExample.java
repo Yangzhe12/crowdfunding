@@ -179,6 +179,11 @@ public class AdminExample {
             return (Criteria) this;
         }
 
+        public Criteria andLoginAcctEqualTo(String value) {
+            addCriterion("username =", value, "username");
+            return (Criteria) this;
+        }
+
         public Criteria andUsernameNotEqualTo(String value) {
             addCriterion("username <>", value, "username");
             return (Criteria) this;

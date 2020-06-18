@@ -1,6 +1,8 @@
 package xyz.yangzhe.crowd.mvc.config;
 
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,7 @@ import java.io.IOException;
  */
 @ControllerAdvice
 public class CrwodExceptionResolver {
+
     @ExceptionHandler(value = LoginFailedException.class)
     public ModelAndView resolveLoginFailedException(
             LoginFailedException exception,
@@ -29,6 +32,9 @@ public class CrwodExceptionResolver {
             HttpServletResponse response)
             throws IOException {
         String viewName = "admin-login";
+        System.out.println("=======================================");
+        System.out.println("登陆失败");
+        System.out.println("=======================================");
         return commonResolve(viewName, exception, request, response);
     }
 
@@ -40,6 +46,9 @@ public class CrwodExceptionResolver {
     ) throws IOException {
 
         String viewName = "admin-login";
+        System.out.println("=======================================");
+        System.out.println("未登录");
+        System.out.println("=======================================");
 
         return commonResolve(viewName, exception, request, response);
     }
