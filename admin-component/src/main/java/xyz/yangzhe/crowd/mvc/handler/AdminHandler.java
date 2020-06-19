@@ -2,6 +2,7 @@ package xyz.yangzhe.crowd.mvc.handler;
 
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,8 +31,9 @@ public class AdminHandler {
     private AdminService adminService;
 
     /**
-     * @Description: 处理登陆请求
+     * @Description: 处理登陆请求,使用SpringSecurity后不再使用该处理器
      */
+    @Deprecated
     @RequestMapping(value = "/admin/do/login.html", method = RequestMethod.POST)
     public String doLogin(@RequestParam("username") String username,
                           @RequestParam("password") String password,
@@ -51,6 +53,8 @@ public class AdminHandler {
      */
     @RequestMapping("/admin/do/logout.html")
     public String doLogout(HttpSession session) {
+        System.out.println("===================================");
+        System.out.println("===================================");
         // 强制Session失效
         session.invalidate();
         return "redirect:/admin/to/login/page.html";
@@ -63,6 +67,7 @@ public class AdminHandler {
      * pageSize: pageSize默认值使用5
      * @Return:
      */
+    @PreAuthorize("hasAuthority('user:get')")
     @RequestMapping("/admin/get/page.html")
     public String getPageInfo(
             @RequestParam(value = "keyword", defaultValue = "") String keyword,
@@ -82,6 +87,7 @@ public class AdminHandler {
     /**
      * @Description: 添加用户handler
      */
+    @PreAuthorize("hasAuthority('user:save') OR hasRole('管理员')")
     @RequestMapping(value = "/admin/save.html", method = RequestMethod.POST)
     public String saveAdmin(Admin admin) {
         // 1. 保存

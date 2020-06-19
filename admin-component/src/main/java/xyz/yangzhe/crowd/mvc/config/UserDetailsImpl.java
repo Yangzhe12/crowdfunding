@@ -36,9 +36,6 @@ public class UserDetailsImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 1.根据账号名称查询Admin对象
         Admin admin = adminService.getAdminByLoginAcct(username);
-        System.out.println("-----------------------------------------");
-        System.out.println(admin);
-        System.out.println("-----------------------------------------");
 
         // 2.获取adminId
         Integer adminId = admin.getId();

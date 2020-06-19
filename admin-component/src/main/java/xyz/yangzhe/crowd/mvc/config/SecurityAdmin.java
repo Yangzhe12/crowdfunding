@@ -37,4 +37,8 @@ public class SecurityAdmin extends User {
     public Admin getOriginalAdmin() {
         return originalAdmin;
     }
+
+    public void setOriginalAdmin(Admin originalAdmin) {
+        this.originalAdmin = originalAdmin;
+    }
 }
